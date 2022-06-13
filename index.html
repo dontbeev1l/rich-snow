@@ -55,6 +55,20 @@
         margin-top: -6vw;
         margin-left: 4vw;
         z-index: 2;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .balance-value span img {
+        height: 3vw;
+        margin-top: 0.62vw;
+    }
+
+    .balance-value>img {
+        height: 2vw;
+        margin-top: 0.27vw;
     }
 
     .btn_back {
@@ -491,7 +505,9 @@
     <div class="view">
         <div class="snowman">
             <img src="./images/snowman.png" class="snowman__image">
-            <div class="balance-value"><span></span></div>
+            <div class="balance-value"><span></span>
+                <img src="./images/diamond.png">
+            </div>
         </div>
         <img class="btn_back" src="./images/btn_back.png" alt="" role="button">
 
@@ -825,12 +841,12 @@
                 }, 2000)
             }
         })
-
-
-
     }
 
     function play() {
+        if (bet > balance) {
+            bet = balance;
+        }
         balance -= bet;
         updateBalance();
         STORE.set('BALANCE', balance);
@@ -849,7 +865,6 @@
         let wins = 0;
         let trys = 4;
         let starExist = false;
-
 
         document.getElementById('btnPlay').classList.add('button-play_hidden');
         document.querySelector('.snowdrift').classList.add('snowdrift_active');
