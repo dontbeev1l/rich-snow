@@ -6,26 +6,913 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rich Snow</title>
-    <style>
-        .container {
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-            position: fixed;
-            background: darkblue;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
+<style>
+    body {
+        font-family: 'Jockey One', sans-serif;
+    }
+
+    .snowman__image {
+        width: 30%;
+    }
+
+    .snowman {
+        position: fixed;
+        width: 100%;
+        left: 1%;
+        bottom: 1%;
+    }
+
+    .btn_back {
+        width: 75px;
+        height: 75px;
+        position: fixed;
+        left: 1%;
+        top: 1%;
+        cursor: pointer;
+    }
+
+    @keyframes snowdriftShow {
+        from {
+            transform: translateY(-100vh) translateX(-50%);
+        }
+
+        to {
+            transform: translateY(0) translateX(-50%);
+        }
+    }
+
+    .snowdrift,
+    .players-numbers {
+        position: fixed;
+        height: 11vh;
+        left: 50%;
+        top: 11vh;
+        transform: translateY(-100vh) translateX(-50%);
+    }
+
+    .players-numbers {
+        text-align: center;
+        margin-top: -5vh;
+        z-index: 3;
+    }
+
+    .players-numbers img {
+        height: 11vh;
+        white-space: nowrap;
+    }
+
+    .snowdrift_active,
+    .players-numbers_active {
+        animation: snowdriftShow 300ms forwards;
+        animation-delay: calc(var(--atimedelay) * 13);
+    }
+
+    @keyframes starShow {
+        from {
+            transform: scale(0);
+        }
+
+        to {
+            transform: scale(1);
+        }
+    }
+
+    .star {
+        position: fixed;
+        transform: scale(0);
+    }
+
+    .star_active {
+        animation: starShow 300ms forwards;
+        animation-delay: calc(var(--atimedelay) * 13);
+    }
+
+    .star img {
+        width: 100%;
+    }
+
+    .star_right {
+        top: calc(2vh + 5vw);
+        width: 7.5vw;
+        right: 2vw;
+    }
+
+    .star_right img {
+        transform: rotateZ(15deg);
+    }
+
+    .star_center {
+        top: 2vh;
+        width: 10vw;
+        right: calc(2vw + 7.5vw);
+    }
+
+    .star_left {
+        top: calc(2vh + 5vw);
+        width: 7.5vw;
+        right: calc(2vw + 7.5vw + 10vw);
+    }
+
+    .star_left img {
+        transform: rotateZ(-15deg);
+    }
+
+
+    /* SNOWBALL */
+
+    @keyframes snowballFall {
+        0% {
+            transform: translateY(-100vh);
+
+        }
+
+        90% {
+            transform: translateY(3vh);
+
+        }
+
+        95% {
+            transform: translateY(-3vh);
+
+        }
+
+        100% {
+            transform: translateY(0vh);
+
+        }
+    }
+
+    @keyframes snowballDisFall {
+        0% {
+            transform: translateY(0vh);
+
+        }
+
+        100% {
+            transform: translateY(100vh);
+        }
+    }
+
+    :root {
+        --atimedelay: 125ms
+    }
+
+    .snowball {
+        width: 9vw;
+        height: 7vw;
+        background-image: url('/images/snowball.png');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: fixed;
+        transform: translateY(-100vh);
+        cursor: pointer;
+    }
+
+    .value {
+        width: 9vw;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        position: fixed;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transform: scale(0);
+    }
+
+    .value_higthlight .highlight {
+        display: block;
+        animation: highlightAnim 1000ms linear infinite;
+    }
+
+    @keyframes highlightAnim {
+        from {
+            transform: rotatez(0deg);
+        }
+
+        to {
+            transform: rotatez(360deg);
+        }
+    }
+
+
+    .highlight {
+        margin-top: calc(-18vh - 2.9vw);
+        width: 22vh !important;
+        height: 22vh !important;
+        pointer-events: none;
+        z-index: -1;
+        display: none;
+    }
+
+    .value_active {
+        transform: scale(1);
+        transition: 300ms ease;
+    }
+
+    .value>img {
+        height: 8vh;
+    }
+
+    .value__value {
+        background: url('/images/value.png');
+        width: 100%;
+        height: 3.9vw;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 0.5vw;
+        box-sizing: border-box;
+        color: #fff;
+    }
+
+    .diamond_ico {
+        height: 1.2vw;
+        margin-left: 5px;
+    }
+
+    .snowball_active {
+        animation: snowballFall 250ms forwards;
+    }
+
+
+    .snowball_disabled {
+        animation: snowballDisFall 400ms;
+        animation-delay: 0ms !important;
+    }
+
+    /* FIRST ROW */
+    .snowball_6,
+    .snowball_5,
+    .snowball_4,
+    .snowball_3,
+    .snowball_2,
+    .snowball_1 {
+        top: 33vh;
+    }
+
+    .snowball_6 {
+        right: 2.7vw;
+        animation-delay: calc(var(--atimedelay) * 7);
+    }
+
+    .snowball_5 {
+        right: calc(2.7vw + 9vw + 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 8);
+    }
+
+    .snowball_4 {
+        right: calc(2.7vw + 2 * 9vw + 2 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 9);
+    }
+
+    .snowball_3 {
+        right: calc(2.7vw + 3 * 9vw + 3 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 10);
+    }
+
+    .snowball_2 {
+        right: calc(2.7vw + 4 * 9vw + 4 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 11);
+    }
+
+    .snowball_1 {
+        right: calc(2.7vw + 5 * 9vw + 5 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 12);
+    }
+
+
+    /* SECOND ROW */
+
+
+    .snowball_11,
+    .snowball_10,
+    .snowball_9,
+    .snowball_8,
+    .snowball_7 {
+        top: calc(33vh + 7vw + 2vh);
+    }
+
+    .snowball_11 {
+        right: 7.5vw;
+        animation-delay: calc(var(--atimedelay) * 2);
+    }
+
+    .snowball_10 {
+        right: calc(7.5vw + 9vw + 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 3);
+    }
+
+    .snowball_9 {
+        right: calc(7.5vw + 2 * 9vw + 2 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 4);
+    }
+
+    .snowball_8 {
+        right: calc(7.5vw + 3 * 9vw + 3 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 5);
+    }
+
+    .snowball_7 {
+        right: calc(7.5vw + 4 * 9vw + 4 * 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 6);
+    }
+
+
+    /* THIRD ROW */
+
+    .snowball_13,
+    .snowball_12 {
+        top: calc(33vh + 2* 7vw + 2 * 2vh);
+    }
+
+    .snowball_13 {
+        right: 23vw;
+        animation-delay: calc(var(--atimedelay) * 0);
+    }
+
+    .snowball_12 {
+        right: calc(23vw + 9vw + 1.5vw);
+        animation-delay: calc(var(--atimedelay) * 1);
+    }
+
+    .button-play {
+        width: 23vw;
+        position: fixed;
+        right: 7.5vw;
+        top: 10%;
+        cursor: pointer;
+    }
+
+    @keyframes hideButtons {
+        from {
+            transform: translateY(0) scale(1);
+        }
+
+        to {
+            transform: translateY(100vh) scale(0.2);
+        }
+    }
+
+    .button-play_hidden {
+        animation: 300ms hideButtons forwards;
+    }
+
+    .dialog {
+        position: absolute;
+        left: calc(50% - 45vh);
+        height: 90vh;
+        width: 90vh;
+        background: url('/images/dialog_bg.png');
+        top: 6vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding: 0 6vh;
+        box-sizing: border-box;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        display: none;
+    }
+
+    @keyframes dialogShow {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    .dialog_active {
+        display: flex;
+        animation: dialogShow 300ms ease forwards;
+    }
+
+    .total-score {
+        max-width: 100%;
+        max-height: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .total-score>img {
+        margin-left: 15px;
+    }
+
+    .total-value_1 img {
+        height: 30vh;
+    }
+
+    .total-value_2 img {
+        height: 26vh;
+    }
+
+    .total-value_3 img {
+        height: 22vh;
+    }
+
+    .total-value_4 img {
+        height: 17vh;
+    }
+
+    .total-value_5 img {
+        height: 12vh;
+    }
+
+    .dialog-button {
+        position: fixed;
+        bottom: 6vh;
+    }
+
+    .dialog-button>img {
+        height: 23vh;
+        cursor: pointer;
+
+    }
+
+    .dialog-button>img:not(:first-child) {
+        margin-left: 10px;
+    }
+
+    .star_no_delay {
+        animation-delay: 0ms !important;
+    }
+</style>
+
 <body>
-    <div class="container" id="container">
+    <div class="view">
+        <div class="snowman">
+            <img src="/images/snowman.png" class="snowman__image">
+            <!-- <img src="/images/throw.gif" class="snowman__image"> -->
+        </div>
+        <img class="btn_back" src="/images/btn_back.png" alt="" role="button">
+
+
+        <!-- PLAYESR NUMBERS -->
+        <div class="players-numbers">
+        </div>
+
+        <img src="/images/snowdrift.png" class="snowdrift" alt="snowdrift">
+
+        <!-- STARS -->
+
+        <div class="star star_left">
+            <img src="/images/star.png" alt="star">
+        </div>
+        <div class="star star_center">
+            <img src="/images/star.png" alt="star">
+        </div>
+        <div class="star star_right">
+            <img src="/images/star.png" alt="star">
+        </div>
+        <div class="star star_left">
+            <img src="/images/star_active.png" alt="star">
+        </div>
+        <div class="star star_center">
+            <img src="/images/star_active.png" alt="star">
+        </div>
+        <div class="star star_right">
+            <img src="/images/star_active.png" alt="star">
+        </div>
+
+        <!-- SNOWBALLS -->
+        <div class="snowballs">
+            <div class="snowball snowball_1"></div>
+            <div class="snowball snowball_2"></div>
+            <div class="snowball snowball_3"></div>
+            <div class="snowball snowball_4"></div>
+            <div class="snowball snowball_5"></div>
+            <div class="snowball snowball_6"></div>
+            <div class="snowball snowball_7"></div>
+            <div class="snowball snowball_8"></div>
+            <div class="snowball snowball_9"></div>
+            <div class="snowball snowball_10"></div>
+            <div class="snowball snowball_11"></div>
+            <div class="snowball snowball_12"></div>
+            <div class="snowball snowball_13"></div>
+        </div>
+        <div class="values">
+            <div class="value value_1  snowball_1">
+                <img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_2  snowball_2">
+                <img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_3  snowball_3"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_4  snowball_4"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_5  snowball_5"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+
+            </div>
+            <div class="value value_6  snowball_6"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_7  snowball_7"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_8  snowball_8"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_9  snowball_9"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_10 snowball_10"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_11 snowball_11"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_12 snowball_12"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+            <div class="value value_13 snowball_13"><img src="/images/d7.png" alt="">
+                <div class="value__value">
+                    <span></span>
+                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                </div>
+                <img class="highlight" src="/images/highlight.png">
+            </div>
+        </div>
+
+
+        <img src="/images/btn_play.png" alt="PLAY" class="button-play" id="btnPlay">
+
+        <div class="dialog-bg" id="dialogBg"></div>
+        <div class="dialog" id="endGameDialog">
+            <div class="total-score">
+                <span class="total-value total-value_5">
+                    <img src="/images/d2.png" alt="">
+                    <img src="/images/d2.png" alt="">
+                    <img src="/images/d2.png" alt="">
+                    <img src="/images/d2.png" alt="">
+                </span>
+                <img src="/images/diamond.png" alt="">
+            </div>
+            <div class="dialog-button">
+                <img src="/images/btn_back.png">
+                <img src="/images/play.png" id="btnReplay">
+            </div>
+        </div>
+
+        <div class="dialog" id="bonusGameDialog">
+            <div class="bonus-game">
+
+                <style>
+                    .bonus-row {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr;
+                        grid-gap: 3vh;
+                    }
+
+                    .bonus-game {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .bonus-game-hedaer {
+                        color: #fff;
+                        font-size: 4vh;
+                        margin-bottom: 2vh;
+                    }
+
+                    .bonus-row img {
+                        width: 20vh;
+                    }
+
+                    .bonus-row>div {
+                        position: relative;
+                    }
+
+                    .bonus-result {
+                        position: absolute;
+                        left: 50%;
+                        top: 50%;
+                        transform: translatex(-50%) translatey(-50%);
+                    }
+
+                    .bonus-active>img:first-child {
+                        opacity: 0;
+                    }
+                </style>
+                <span class="bonus-game-hedaer">BONUS GAME</span>
+                <div class="bonus-row">
+                    <div>
+                        <img src="/images/chest.png" alt="">
+                    </div>
+                    <div>
+                        <img src="/images/chest.png" alt="">
+                    </div>
+                    <div>
+                        <img src="/images/chest.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="dialog-button">
+                <img src="/images/play.png" id="btnBonusNext">
+            </div> -->
+        </div>
+
+
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/6.4.2/browser/pixi.min.js"
-        integrity="sha512-YB+Jnx8/VO5uFB0S9NoOsSC1JHct0zTJI8GGijwuxNDLcZ/UkChDy/xUUBKEgnyhDVFTcdfwF5lTJ1lY/RcTwQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="./lib/scale.js"></script>
-    <script src="./game.js"></script>
 </body>
+
+<script>
+
+    const STORE = {
+        get(key, def) {
+            return localStorage.getItem(key) || def;
+        },
+        set(key, value) {
+            localStorage.setItem(key, value)
+        }
+    }
+
+    let bet = 1000;
+
+    let stars = +STORE.get('stars', 0);
+    let dBonus = +STORE.get('dBonus', 0);
+    let hBonus = +STORE.get('hBonus', 0);
+    let balance = +STORE.get('BALANCE', 1000);
+
+    function updateStars(noDelay) {
+        Array.from(document.querySelectorAll('.star')).forEach((el, i) => {
+            if (i >= 3 + stars) { el.classList.remove('star_active'); return; }
+            el.classList.add('star_active');
+            if (noDelay) {
+                el.classList.add('star_no_delay');
+            }
+        });
+    }
+
+    function random(max, min) {
+        if (!min) { min = 0; }
+        return Math.round(Math.random() * (max - min) + min);
+    }
+
+    function closeAllDialogs() {
+        Array.from(document.querySelectorAll('.dialog_active')).forEach(el => {
+            el.classList.remove('dialog_active');
+        })
+    }
+
+
+
+    function enableBonusGame(clbk) {
+
+        document.getElementById('bonusGameDialog').classList.add('dialog_active')
+        Array.from(document.querySelectorAll('.bonus-result')).forEach(el => {
+            el.parentNode.removeChild(el);
+        });
+
+        let bonusSelected = false;
+
+        Array.from(document.querySelectorAll('.bonus-row div')).forEach(el => {
+            el.classList.remove('bonus-active');
+
+            el.onclick = () => {
+                if (bonusSelected) { return; }
+                bonusSelected = true;
+
+                const B = [
+                    {
+                        name: 'heart',
+                        fn: () => {
+                            hBonus++;
+                            STORE.set('hBonus', hBonus);
+                        }
+                    },
+                    {
+                        name: 'diamond',
+                        fn: () => {
+                            balance += random(balance, balance * 0.1);
+                            STORE.set('BALANCE', balance);
+                        }
+                    },
+                    {
+                        name: 'diabonus',
+                        fn: () => {
+                            dBonus++;
+                            STORE.set('dBonus', dBonus);
+                        }
+                    }
+                ];
+
+                const bonus = B[random(2)];
+                console.log(bonus);
+
+                el.classList.add('bonus-active');
+
+                el.insertAdjacentHTML('beforeEnd', `<img class="bonus-result" src="/images/${bonus.name}.png" alt="">`);
+                bonus.fn();
+                setTimeout(() => {
+                    document.getElementById('bonusGameDialog').classList.remove('dialog_active')
+                    clbk();
+                }, 2000)
+            }
+        })
+
+
+
+    }
+
+    function play() {
+        updateStars();
+        closeAllDialogs();
+        const nums = new Set();
+
+        Array.from(document.querySelectorAll('.value_active')).forEach(e => {
+            e.classList.remove('value_active');
+        })
+        Array.from(document.querySelectorAll('.value_higthlight')).forEach(e => {
+            e.classList.remove('value_higthlight');
+        })
+        document.querySelector('.snowdrift').classList.remove('snowdrift_active');
+
+        let wins = 0;
+        let trys = 4;
+        let starExist = false;
+
+
+        document.getElementById('btnPlay').classList.add('button-play_hidden');
+        document.querySelector('.snowdrift').classList.add('snowdrift_active');
+
+        Array.from(document.querySelectorAll('.star')).forEach((el, i) => {
+            if (i >= 3) { return; }
+            el.classList.add('star_active');
+        });
+        updateStars();
+
+        while (nums.size < 4) {
+            nums.add(random(9));
+        }
+
+        document.querySelector('.players-numbers').innerHTML = '';
+        nums.forEach(n => {
+            document.querySelector('.players-numbers').insertAdjacentHTML('beforeEnd', `<img src="/images/d${n}.png">`)
+        })
+
+        document.querySelector('.players-numbers').classList.add('players-numbers_active');
+
+        Array.from(document.querySelectorAll('.snowball')).forEach((el, index) => {
+            el.classList.remove('snowball_disabled');
+            el.classList.add('snowball_active');
+            el.onclick = () => {
+                if (trys <= 0) { return; }
+                trys--;
+                el.classList.remove('snowball_active');
+                el.classList.add('snowball_disabled');
+
+                const value = random(bet * 2, bet * 0);
+                const num = random(starExist ? 9 : 10);
+
+                const valueEl = document.querySelector(`.value_${index + 1}`);
+                valueEl.classList.add('value_active');
+                valueEl.children[0].setAttribute('src', `/images/d${num}.png`);
+                valueEl.children[1].children[0].innerHTML = value;
+
+                if (nums.has(num)) {
+                    console.log(nums)
+                    wins += value;
+                    balance += value;
+                    STORE.set('BALANCE', balance);
+                    valueEl.classList.add('value_higthlight');
+                }
+
+                if (num === 10) {
+                    stars += 1;
+                    updateStars(true);
+                    STORE.set('stars', stars)
+                    starExist = true;
+                    wins += value;
+                    balance += value;
+                    STORE.set('BALANCE', balance);
+                    valueEl.classList.add('value_higthlight');
+                }
+
+                if (trys === 0) {
+                    function endGame() {
+                        Array.from(document.querySelectorAll('.snowball')).forEach((el, index) => {
+                            if (el.classList.contains('snowball_disabled')) { return; }
+
+                            const value = random(bet * 2, bet * 0);
+                            const num = random(starExist ? 9 : 10);
+                            if (num === 10) {
+                                starExist = true;
+                            }
+                            const valueEl = document.querySelector(`.value_${index + 1}`);
+                            valueEl.classList.add('value_active');
+                            valueEl.children[0].setAttribute('src', `/images/d${num}.png`);
+                            valueEl.children[1].children[0].innerHTML = value;
+
+                            el.classList.remove('snowball_active');
+                            el.classList.add('snowball_disabled');
+                        });
+
+                        const score = `${wins}`;
+                        document.getElementById('endGameDialog').classList.add('dialog_active');
+                        const totalValue = document.querySelector('.total-value');
+                        totalValue.classList.remove(...totalValue.classList);
+                        totalValue.innerHTML = '';
+                        totalValue.classList.add('total-value');
+                        totalValue.classList.add(`total-value_${score.split('').length}`);
+                        score.split('').forEach(s => {
+                            totalValue.insertAdjacentHTML('beforeEnd', `<img src="/images/d${s}.png" alt="">`);
+                        });
+                    }
+
+
+                    if (stars === 3) {
+                        stars = 0;
+                        STORE.set('stars', 0);
+                        updateStars();
+                        enableBonusGame(() => { endGame(); })
+                    } else {
+                        endGame();
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    document.getElementById('btnPlay').addEventListener('click', play);
+    document.getElementById('btnReplay').addEventListener('click', play);
+
+</script>
 
 </html>
