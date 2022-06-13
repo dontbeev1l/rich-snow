@@ -9,10 +9,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css">
 </head>
 
 <style>
+    .view {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: fixed;
+    }
+
+    body {
+        background: url('/images/back.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+    }
+
     body {
         font-family: 'Jockey One', sans-serif;
     }
@@ -473,7 +491,7 @@
     <div class="view">
         <div class="snowman">
             <img src="./images/snowman.png" class="snowman__image">
-            <div class="balance-value"></div>
+            <div class="balance-value"><span></span></div>
         </div>
         <img class="btn_back" src="./images/btn_back.png" alt="" role="button">
 
@@ -719,6 +737,17 @@
     let hBonus = +STORE.get('hBonus', 0);
     let balance = +STORE.get('BALANCE', 1000);
 
+    updateBalance();
+
+    function updateBalance() {
+        const el = document.querySelector('.balance-value span');
+        el.innerHTML = '';
+        const score = `${balance}`;
+        score.split('').forEach(s => {
+            el.insertAdjacentHTML('beforeEnd', `<img src="./images/d${s}.png" alt="">`);
+        });
+    }
+
     function updateStars(noDelay) {
         Array.from(document.querySelectorAll('.star')).forEach((el, i) => {
             if (i >= 3 + stars) { el.classList.remove('star_active'); return; }
@@ -770,6 +799,7 @@
                         name: 'diamond',
                         fn: () => {
                             balance += random(balance, balance * 0.1);
+                            updateBalance();
                             STORE.set('BALANCE', balance);
                         }
                     },
@@ -801,6 +831,9 @@
     }
 
     function play() {
+        balance -= bet;
+        updateBalance();
+        STORE.set('BALANCE', balance);
         updateStars();
         closeAllDialogs();
         const nums = new Set();
@@ -847,7 +880,7 @@
                 el.classList.remove('snowball_active');
                 el.classList.add('snowball_disabled');
 
-                const value = random(bet * 2, bet * 0);
+                const value = random(bet * 1.2, bet * 0);
                 const num = random(starExist ? 9 : 10);
 
                 const valueEl = document.querySelector(`.value_${index + 1}`);
@@ -859,6 +892,7 @@
                     console.log(nums)
                     wins += value;
                     balance += value;
+                    updateBalance();
                     STORE.set('BALANCE', balance);
                     valueEl.classList.add('value_higthlight');
                 }
@@ -870,6 +904,7 @@
                     starExist = true;
                     wins += value;
                     balance += value;
+                    updateBalance();
                     STORE.set('BALANCE', balance);
                     valueEl.classList.add('value_higthlight');
                 }
