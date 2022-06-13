@@ -18,7 +18,7 @@
     }
 
     .snowman__image {
-        width: 30%;
+        width: 33vw;
     }
 
     .snowman {
@@ -26,6 +26,17 @@
         width: 100%;
         left: 1%;
         bottom: 1%;
+    }
+
+    .balance-value {
+        position: relative;
+        width: 25vw;
+        height: 7vw;
+        background: url('./images/value-long.png');
+        background-size: cover;
+        margin-top: -6vw;
+        margin-left: 4vw;
+        z-index: 2;
     }
 
     .btn_back {
@@ -166,7 +177,7 @@
     .snowball {
         width: 9vw;
         height: 7vw;
-        background-image: url('/images/snowball.png');
+        background-image: url('./images/snowball.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -224,7 +235,7 @@
     }
 
     .value__value {
-        background: url('/images/value.png');
+        background: url('./images/value.png');
         width: 100%;
         height: 3.9vw;
         background-size: cover;
@@ -376,7 +387,7 @@
         left: calc(50% - 45vh);
         height: 90vh;
         width: 90vh;
-        background: url('/images/dialog_bg.png');
+        background: url('./images/dialog_bg.png');
         top: 6vh;
         background-size: cover;
         background-repeat: no-repeat;
@@ -461,37 +472,37 @@
 <body>
     <div class="view">
         <div class="snowman">
-            <img src="/images/snowman.png" class="snowman__image">
-            <!-- <img src="/images/throw.gif" class="snowman__image"> -->
+            <img src="./images/snowman.png" class="snowman__image">
+            <div class="balance-value"></div>
         </div>
-        <img class="btn_back" src="/images/btn_back.png" alt="" role="button">
+        <img class="btn_back" src="./images/btn_back.png" alt="" role="button">
 
 
         <!-- PLAYESR NUMBERS -->
         <div class="players-numbers">
         </div>
 
-        <img src="/images/snowdrift.png" class="snowdrift" alt="snowdrift">
+        <img src="./images/snowdrift.png" class="snowdrift" alt="snowdrift">
 
         <!-- STARS -->
 
         <div class="star star_left">
-            <img src="/images/star.png" alt="star">
+            <img src="./images/star.png" alt="star">
         </div>
         <div class="star star_center">
-            <img src="/images/star.png" alt="star">
+            <img src="./images/star.png" alt="star">
         </div>
         <div class="star star_right">
-            <img src="/images/star.png" alt="star">
+            <img src="./images/star.png" alt="star">
         </div>
         <div class="star star_left">
-            <img src="/images/star_active.png" alt="star">
+            <img src="./images/star_active.png" alt="star">
         </div>
         <div class="star star_center">
-            <img src="/images/star_active.png" alt="star">
+            <img src="./images/star_active.png" alt="star">
         </div>
         <div class="star star_right">
-            <img src="/images/star_active.png" alt="star">
+            <img src="./images/star_active.png" alt="star">
         </div>
 
         <!-- SNOWBALLS -->
@@ -512,118 +523,118 @@
         </div>
         <div class="values">
             <div class="value value_1  snowball_1">
-                <img src="/images/d7.png" alt="">
+                <img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
             <div class="value value_2  snowball_2">
-                <img src="/images/d7.png" alt="">
+                <img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_3  snowball_3"><img src="/images/d7.png" alt="">
+            <div class="value value_3  snowball_3"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_4  snowball_4"><img src="/images/d7.png" alt="">
+            <div class="value value_4  snowball_4"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_5  snowball_5"><img src="/images/d7.png" alt="">
+            <div class="value value_5  snowball_5"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
 
             </div>
-            <div class="value value_6  snowball_6"><img src="/images/d7.png" alt="">
+            <div class="value value_6  snowball_6"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_7  snowball_7"><img src="/images/d7.png" alt="">
+            <div class="value value_7  snowball_7"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_8  snowball_8"><img src="/images/d7.png" alt="">
+            <div class="value value_8  snowball_8"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_9  snowball_9"><img src="/images/d7.png" alt="">
+            <div class="value value_9  snowball_9"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_10 snowball_10"><img src="/images/d7.png" alt="">
+            <div class="value value_10 snowball_10"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_11 snowball_11"><img src="/images/d7.png" alt="">
+            <div class="value value_11 snowball_11"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_12 snowball_12"><img src="/images/d7.png" alt="">
+            <div class="value value_12 snowball_12"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
-            <div class="value value_13 snowball_13"><img src="/images/d7.png" alt="">
+            <div class="value value_13 snowball_13"><img src="./images/d7.png" alt="">
                 <div class="value__value">
                     <span></span>
-                    <img src="/images/diamond.png" class="diamond_ico" alt="">
+                    <img src="./images/diamond.png" class="diamond_ico" alt="">
                 </div>
-                <img class="highlight" src="/images/highlight.png">
+                <img class="highlight" src="./images/highlight.png">
             </div>
         </div>
 
 
-        <img src="/images/btn_play.png" alt="PLAY" class="button-play" id="btnPlay">
+        <img src="./images/btn_play.png" alt="PLAY" class="button-play" id="btnPlay">
 
         <div class="dialog-bg" id="dialogBg"></div>
         <div class="dialog" id="endGameDialog">
             <div class="total-score">
                 <span class="total-value total-value_5">
-                    <img src="/images/d2.png" alt="">
-                    <img src="/images/d2.png" alt="">
-                    <img src="/images/d2.png" alt="">
-                    <img src="/images/d2.png" alt="">
+                    <img src="./images/d2.png" alt="">
+                    <img src="./images/d2.png" alt="">
+                    <img src="./images/d2.png" alt="">
+                    <img src="./images/d2.png" alt="">
                 </span>
-                <img src="/images/diamond.png" alt="">
+                <img src="./images/diamond.png" alt="">
             </div>
             <div class="dialog-button">
-                <img src="/images/btn_back.png">
-                <img src="/images/play.png" id="btnReplay">
+                <img src="./images/btn_back.png">
+                <img src="./images/play.png" id="btnReplay">
             </div>
         </div>
 
@@ -671,18 +682,18 @@
                 <span class="bonus-game-hedaer">BONUS GAME</span>
                 <div class="bonus-row">
                     <div>
-                        <img src="/images/chest.png" alt="">
+                        <img src="./images/chest.png" alt="">
                     </div>
                     <div>
-                        <img src="/images/chest.png" alt="">
+                        <img src="./images/chest.png" alt="">
                     </div>
                     <div>
-                        <img src="/images/chest.png" alt="">
+                        <img src="./images/chest.png" alt="">
                     </div>
                 </div>
             </div>
             <!-- <div class="dialog-button">
-                <img src="/images/play.png" id="btnBonusNext">
+                <img src="./images/play.png" id="btnBonusNext">
             </div> -->
         </div>
 
@@ -776,7 +787,7 @@
 
                 el.classList.add('bonus-active');
 
-                el.insertAdjacentHTML('beforeEnd', `<img class="bonus-result" src="/images/${bonus.name}.png" alt="">`);
+                el.insertAdjacentHTML('beforeEnd', `<img class="bonus-result" src="./images/${bonus.name}.png" alt="">`);
                 bonus.fn();
                 setTimeout(() => {
                     document.getElementById('bonusGameDialog').classList.remove('dialog_active')
@@ -822,7 +833,7 @@
 
         document.querySelector('.players-numbers').innerHTML = '';
         nums.forEach(n => {
-            document.querySelector('.players-numbers').insertAdjacentHTML('beforeEnd', `<img src="/images/d${n}.png">`)
+            document.querySelector('.players-numbers').insertAdjacentHTML('beforeEnd', `<img src="./images/d${n}.png">`)
         })
 
         document.querySelector('.players-numbers').classList.add('players-numbers_active');
@@ -841,7 +852,7 @@
 
                 const valueEl = document.querySelector(`.value_${index + 1}`);
                 valueEl.classList.add('value_active');
-                valueEl.children[0].setAttribute('src', `/images/d${num}.png`);
+                valueEl.children[0].setAttribute('src', `./images/d${num}.png`);
                 valueEl.children[1].children[0].innerHTML = value;
 
                 if (nums.has(num)) {
@@ -875,7 +886,7 @@
                             }
                             const valueEl = document.querySelector(`.value_${index + 1}`);
                             valueEl.classList.add('value_active');
-                            valueEl.children[0].setAttribute('src', `/images/d${num}.png`);
+                            valueEl.children[0].setAttribute('src', `./images/d${num}.png`);
                             valueEl.children[1].children[0].innerHTML = value;
 
                             el.classList.remove('snowball_active');
@@ -890,7 +901,7 @@
                         totalValue.classList.add('total-value');
                         totalValue.classList.add(`total-value_${score.split('').length}`);
                         score.split('').forEach(s => {
-                            totalValue.insertAdjacentHTML('beforeEnd', `<img src="/images/d${s}.png" alt="">`);
+                            totalValue.insertAdjacentHTML('beforeEnd', `<img src="./images/d${s}.png" alt="">`);
                         });
                     }
 
