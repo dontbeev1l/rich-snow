@@ -41,9 +41,8 @@
 
     .snowman {
         position: fixed;
-        width: 100%;
-        left: 1%;
-        bottom: 1%;
+        left: 1vw;
+        bottom: 1vw;
     }
 
     .balance-value {
@@ -501,8 +500,57 @@
     }
 </style>
 
+<style>
+    .bonuses {
+        position: fixed;
+        left: 35vw;
+        bottom: 2vw;
+        display: flex;
+        flex-direction: row;
+        align-items: bottom;
+        z-index: 2;
+    }
+
+    .bonuse:first-child {
+        margin-right: 2vw;
+    }
+
+    .bonuse {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .bonuse span {
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: -2px;
+        height: 26px;
+        font-size: 22px;
+        line-height: 22px;
+        border-radius: 11px;
+        background: rgba(255, 184, 0, 1);
+        border: 2px solid rgba(165, 45, 21, 1);
+        padding: 0 3px;
+        min-width: 26px;
+        box-sizing: border-box;
+        text-align: center;
+        color: #fff;
+    }
+</style>
+
 <body>
     <div class="view">
+        <div class="bonuses">
+            <div class="bonuse" id="diabonusEl">
+                <span>12</span>
+                <img src="./images/diabonus.png" alt="">
+            </div>
+            <div class="bonuse" id="heartEl">
+                <span>12</span>
+                <img src="./images/heart.png" alt="">
+            </div>
+        </div>
         <div class="snowman">
             <img src="./images/snowman.png" class="snowman__image">
             <div class="balance-value"><span></span>
